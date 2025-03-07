@@ -45,3 +45,12 @@ document.getElementById("highlightHighPriorityBtn").addEventListener("click", fu
       ticket.style.border = "2px solid #dc3545";
   });
 });
+
+// Task 4: Support Ticket Resolution with Event Bubbling
+
+document.getElementById("ticketContainer").addEventListener("click", function(event) {
+  if (event.target.classList.contains("ticket")) {
+      console.log("Support ticket clicked");
+  }
+});
+
