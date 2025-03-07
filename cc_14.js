@@ -35,3 +35,13 @@ function addTicket(name, issue, priority) {
   ticket.appendChild(resolveBtn);
   ticketContainer.appendChild(ticket);
 }
+
+// Task 3: Highlighting High Priority Tickets
+
+document.getElementById("highlightHighPriorityBtn").addEventListener("click", function() {
+  const highPriorityTickets = Array.from(document.querySelectorAll(".high-priority"));
+  highPriorityTickets.forEach(ticket => {
+      ticket.style.backgroundColor = "#f8d7da";  // Highlighting high-priority tickets
+      ticket.style.border = "2px solid #dc3545";
+  });
+});
