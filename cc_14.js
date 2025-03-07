@@ -54,3 +54,44 @@ document.getElementById("ticketContainer").addEventListener("click", function(ev
   }
 });
 
+// Task 5: Inline Editing for Support Tickets
+
+document.getElementById("ticketContainer").addEventListener("dblclick", function(event) {
+  const ticket = event.target.closest(".ticket");
+  if (!ticket) return;
+
+  const nameElem = ticket.querySelector("h3");
+  const issueElem = ticket.querySelector("p");
+  const priorityElem = ticket.querySelector("span");
+
+  const nameInput = document.createElement("input");
+  nameInput.type = "text";
+  nameInput.value = nameElem.textContent;
+
+  const issueInput = document.createElement("input");
+  issueInput.type = "text";
+  issueInput.value = issueElem.textContent;
+
+  const priorityInput = document.createElement("input");
+  priorityInput.type = "text";
+  priorityInput.value = priorityElem.textContent.replace("Priority: ", "");
+
+  const saveBtn = document.createElement("button");
+  saveBtn.textContent = "Save";
+  saveBtn.addEventListener("click", function() {
+      nameElem.textContent = nameInput.value;
+      issueElem.textContent = issueInput.value;
+      priorityElem.textContent = `Priority: ${priorityInput.value}`;
+      ticket.replaceChild(nameElem, nameInput);
+      ticket.replaceChild(issueElem, issueInput);
+      ticket.replaceChild(priorityElem, priorityInput);
+      ticket.removeChild(saveBtn);
+  });
+
+  ticket.replaceChild(nameInput, nameElem);
+  ticket.replaceChild(issueInput, issueElem);
+  ticket.replaceChild(priorityInput, priorityElem);
+  ticket.appendChild(saveBtn);
+});
+
+
